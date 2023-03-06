@@ -1,66 +1,71 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Table } from "antd";
 
 const TableSec = () => {
-  const data = [
-    {
-      name: "Ismoil",
-      age: 24,
-      status: "married",
-      occupation: "Front-end Developer",
-      // key: 1,
-    },
-    {
-      name: "Sorbon",
-      age: 25,
-      status: "married",
-      occupation: "Businessman",
-      // key: 2,
-    },
-    {
-      name: "Somon",
-      age: 24,
-      status: "married",
-      occupation: "Civil Engineer",
-      // key: 3,
-    },
-  ];
+  const [datasource, setDatasource] = useState([]);
+  const [loading, setLoading] = useState(true);
   const columns = [
     {
-      title: "Name",
-      dataIndex: "name",
-      // key: "key",
-      render: (test) => {
-        return <h3>{test}</h3>;
+      key: "1",
+      title: "ID",
+      dataIndex: "id",
+    },
+    {
+      key: "2",
+      title: "User ID",
+      dataIndex: "userId",
+      sorter: (rec1, rec2) => {
+        return rec1.userId > rec2.userId;
       },
     },
     {
-      title: "Age",
-      dataIndex: "age",
-      // key: "key",
-      sorter: (a, b) => a.age - b.age,
-    },
-    {
+      key: "3",
       title: "Status",
-      dataIndex: "status",
-      // key: "key",
+      dataIndex: "completed",
+      render: (completed) => {
+        return <p>{completed ? "Complete" : "In Progress"}</p>;
+      },
+      filters: [
+        { text: "Complete", value: true },
+        { text: "In Progress", value: false },
+      ],
+      onFilter: (value, record) => {
+        return record.completed === value;
+      },
     },
     {
-      title: "Occupation",
-      dataIndex: "occupation",
-      // key: "key",
-    },
-    {
-      title: "Graduated",
-      render: (payload) => {
-        return payload.age >= 20 ? "true" : "false";
+      key: "4",
+      title: "Title",
+      dataIndex: "title",
+      render: (title) => {
+        return <p>{title.slice(0, 20)}...</p>;
       },
     },
   ];
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await fetch("https://jsonplaceholder.typicode.com/todos");
+      const data = await res.json();
+      setDatasource(data.slice(0, 50));
+      setLoading(false);
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <>
       <h1 style={{ marginBottom: "20px" }}>Table Section</h1>
-      <Table dataSource={data} columns={columns}></Table>
+      <Table
+        dataSource={datasource}
+        columns={columns}
+        loading={loading}
+        pagination={{
+          pageSize: 5,
+          hideOnSinglePage: true,
+        }}
+      ></Table>
     </>
   );
 };

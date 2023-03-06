@@ -30,6 +30,7 @@ const TableSec = () => {
         { text: "In Progress", value: false },
       ],
       onFilter: (value, record) => {
+        console.log(value, record)
         return record.completed === value;
       },
     },

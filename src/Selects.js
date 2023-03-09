@@ -10,7 +10,6 @@ const Selects = () => {
   const fruits = ["Apple", "Banana", "Watermelon", "Melon", "Pear", "Peach"];
   return (
     <>
-      <h1 style={{ marginBottom: "20px" }}>Selects Section</h1>
       <Select
         mode="multiple"
         maxTagCount={2}

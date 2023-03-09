@@ -8,6 +8,7 @@ import {
 import { Button, Input, Spin } from "antd";
 import { useState } from "react";
 
+
 function Loading() {
   const btnStyle = {
     height: "auto",
@@ -26,7 +27,6 @@ function Loading() {
 
   return (
     <>
-      <h1 style={{ marginBottom: "20px" }}>Loading Section</h1>
       <Spin spinning={loading}>Loading Text</Spin>
 
       <Button

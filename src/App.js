@@ -1,4 +1,4 @@
-import { DatePicker, TimePicker } from "antd";
+import { DatePicker, TimePicker, Divider } from "antd";
 import TableSec from "./TableSec";
 import Progresses from "./Progresses";
 import Forms from "./Forms";
@@ -6,39 +6,72 @@ import Selects from "./Selects";
 import Loading from "./Loading";
 
 function App() {
-  // Styles:
-  
-  const horizontalLines = {
-    color: "gray",
-    width: "100%",
-    margin: "50px",
+  const verDivider = {
+    borderColor: "blue",
+    fontSize: "2.5rem",
+    margin: "0 20px",
   };
-  
 
   return (
     <div className="App">
+      <span style={{ fontSize: "2rem" }}>
+        <Divider
+          style={verDivider}
+          type="vertical"
+        />
+        Loading Section
+        <Divider
+          style={verDivider}
+          type="vertical"
+        />
+      </span>
       <Loading />
 
-      <hr style={horizontalLines} />
+      <Divider
+        orientation="center"
+        dashed
+        style={{ borderColor: "blue", fontSize: "2rem" }}
+      >
+        Selects Section
+      </Divider>
 
       <Selects />
 
-      <hr style={horizontalLines} />
+      <Divider
+        orientation="center"
+        style={{ borderColor: "blue", fontSize: "2rem" }}
+      >
+        Form Section
+      </Divider>
 
       <Forms />
 
-      <hr style={horizontalLines} />
+      <Divider
+        orientation="center"
+        style={{ borderColor: "blue", fontSize: "2rem" }}
+      >
+        Table Section
+      </Divider>
 
       <TableSec />
 
-      <hr style={horizontalLines} />
+      <Divider
+        orientation="center"
+        style={{ borderColor: "blue", fontSize: "2rem" }}
+      >
+        Date Pickers
+      </Divider>
 
-      <h1 style={{ marginBottom: "20px" }}>Date Pickers</h1>
       <DatePicker picker="date" />
       <TimePicker picker="date" />
       <DatePicker.RangePicker picker="date" />
 
-      <hr style={horizontalLines} />
+      <Divider
+        orientation="center"
+        style={{ borderColor: "blue", fontSize: "2rem" }}
+      >
+        Progress Section
+      </Divider>
 
       <Progresses />
     </div>

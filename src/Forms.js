@@ -25,7 +25,6 @@ const Forms = () => {
 
   return (
     <>
-      <h1 style={{ marginBottom: "20px" }}>Form Section</h1>
       {alert && (
         <Alert
           type="error"

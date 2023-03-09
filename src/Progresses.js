@@ -4,7 +4,6 @@ import { Progress } from "antd";
 const Progresses = () => {
   return (
     <>
-      <h1 style={{marginBottom: "20px"}}>Progresses Section</h1>
       <Progress
         style={{ marginTop: "20px" }}
         percent="40"

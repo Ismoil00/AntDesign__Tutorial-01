@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Table, Tag } from "antd";
+import { Table, Tag, Button, Modal, Input } from "antd";
+import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 
 const TableSec = () => {
-  const [datasource, setDatasource] = useState([]);
+  const [table1Data, setTable1Data] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [isEditing, setIsEditing] = useState(false);
+  const [beingEdited, setBeingEdited] = useState(null);
   const [alreadySelectedKeys, setAlreadySelectedKeys] = useState(["2"]);
-  const columnTab1 = [
+  const table1Column = [
     {
       key: "1",
       title: "ID",
@@ -47,7 +50,51 @@ const TableSec = () => {
       },
     },
   ];
-  const columnTab2 = [
+  const [table2Data, setTable2Data] = useState([
+    {
+      key: 1,
+      id: 1,
+      name: "Sorbon",
+      email: "Sorbon@gmail.com",
+      grade: "A",
+    },
+    {
+      key: 2,
+      id: 2,
+      name: "Somon",
+      email: "Somon@gmail.com",
+      grade: "B",
+    },
+    {
+      key: 3,
+      id: 3,
+      name: "Ismoil",
+      email: "Ismoil@gmail.com",
+      grade: "C",
+    },
+    {
+      key: 4,
+      id: 4,
+      name: "Umed",
+      email: "Umed@gmail.com",
+      grade: "A",
+    },
+    {
+      key: 5,
+      id: 5,
+      name: "Bakha",
+      email: "Bakha@gmail.com",
+      grade: "B",
+    },
+    {
+      key: 6,
+      id: 6,
+      name: "Buzurg",
+      email: "Buzurg@gmail.com",
+      grade: "C",
+    },
+  ]);
+  const table2Column = [
     {
       key: "1",
       title: "Student ID",
@@ -60,6 +107,11 @@ const TableSec = () => {
     },
     {
       key: "3",
+      title: "Student Email",
+      dataIndex: "email",
+    },
+    {
+      key: "4",
       title: "Student Grade",
       dataIndex: "grade",
       render: (tag) => {
@@ -71,67 +123,28 @@ const TableSec = () => {
         return <Tag color={color}>{tag}</Tag>;
       },
     },
-  ];
-  const Students = [
     {
-      key: "1",
-      id: "1",
-      name: "Sorbon",
-      grade: "A",
-    },
-    {
-      key: "2",
-      id: "2",
-      name: "Somon",
-      grade: "B",
-    },
-    {
-      key: "3",
-      id: "3",
-      name: "Ismoil",
-      grade: "C",
-    },
-    {
-      key: "4",
-      id: "4",
-      name: "Umed",
-      grade: "A",
-    },
-    {
-      key: "5",
-      id: "5",
-      name: "Bakha",
-      grade: "B",
-    },
-    {
-      key: "6",
-      id: "6",
-      name: "Buzurg",
-      grade: "C",
-    },
-    {
-      key: "7",
-      id: "7",
-      name: "Azam",
-      grade: "A",
-    },
-    {
-      key: "8",
-      id: "8",
-      name: "Parviz",
-      grade: "B",
-    },
-    {
-      key: "9",
-      id: "9",
-      name: "Jahongir",
-      grade: "C",
-    },
-    {
-      key: "10",
-      id: "10",
-      name: "Jonibek",
-      grade: "A",
+      key: "",
+      title: "Actions",
+      render: (rec) => {
+        return (
+          <>
+            <DeleteOutlined
+              style={{ color: "red", fontSize: "1.2rem", cursor: "pointer" }}
+              onClick={() => deleteStudent(rec)}
+            />
+            <EditOutlined
+              style={{
+                color: "darkblue",
+                marginLeft: "20px",
+                fontSize: "1.2rem",
+                cursor: "pointer",
+              }}
+              onClick={() => onEditStudent(rec)}
+            />
+          </>
+        );
+      },
     },
   ];
 
@@ -139,18 +152,72 @@ const TableSec = () => {
     const fetchData = async () => {
       const res = await fetch("https://jsonplaceholder.typicode.com/todos");
       const data = await res.json();
-      setDatasource(data.slice(0, 50));
+      setTable1Data(data.slice(0, 50));
       setLoading(false);
     };
 
     fetchData();
   }, []);
 
+  const AddingNewStudent = () => {
+    const names = [
+      "John",
+      "Jane",
+      "Jack",
+      "Jill",
+      "Islom",
+      "Ali",
+      "Nasim",
+      "Shohin",
+      "Farukh",
+      "Kahor",
+      "Iso",
+      "Muso",
+      "Barot",
+      "Sator",
+      "Jovid",
+      "Parviz",
+      "Jonibek",
+      "Jurabek",
+      "Jahongir",
+      "Azam",
+    ];
+    const grades = ["A", "B", "C"];
+    const randomName = Math.floor(Math.random() * 20);
+    const randomGrade = Math.floor(Math.random() * 3);
+    const name = names[randomName];
+    const grade = grades[randomGrade];
+    const newStudent = {
+      key: table2Data.length ? table2Data[table2Data.length - 1].key + 1 : 1,
+      id: table2Data.length ? table2Data[table2Data.length - 1].key + 1 : 1,
+      name: name,
+      email: name + "@gmail.com",
+      grade: grade,
+    };
+    setTable2Data((prev) => [...prev, newStudent]);
+  };
+
+  const deleteStudent = (rec) => {
+    Modal.confirm({
+      title: "Are you sure, you want to delete this student record?",
+      okText: "Yes",
+      okType: "danger",
+      onOk: () => {
+        setTable2Data((prev) => prev.filter((s) => s.id !== rec.id));
+      },
+    });
+  };
+
+  const onEditStudent = (rec) => {
+    setIsEditing(true);
+    setBeingEdited(rec);
+  };
+
   return (
     <>
       <Table
-        dataSource={datasource}
-        columns={columnTab1}
+        dataSource={table1Data}
+        columns={table1Column}
         loading={loading}
         pagination={{
           pageSize: 5,
@@ -164,50 +231,107 @@ const TableSec = () => {
           hideSelectAll: true,
         }}
       ></Table>
-      <Table
-        dataSource={Students}
-        columns={columnTab2}
-        rowSelection={{
-          type: "checkbox",
-          selectedRowKeys: alreadySelectedKeys,
-          onChange: (rec) => {
-            setAlreadySelectedKeys(rec);
-          },
-          onSelect: (rec) => {
-            console.log(rec);
-          },
-          /* getCheckboxProps: (rec) => ({
-            disabled: rec.grade === "C",
-          }), */
-          selections: [
-            Table.SELECTION_NONE,
-            Table.SELECTION_ALL,
-            Table.SELECTION_INVERT,
-            {
-              key: "even",
-              text: "Select Even Rows",
-              onSelect: (allKeys) => {
-                const selectedKeys = allKeys.filter((key) => {
-                  return key % 2 === 0;
-                });
-                setAlreadySelectedKeys(selectedKeys);
-              },
+
+      <div>
+        <Button
+          onClick={AddingNewStudent}
+          style={{ width: "100%", margin: "0 auto" }}
+        >
+          Add a new Student
+        </Button>
+        <Table
+          dataSource={table2Data}
+          columns={table2Column}
+          rowSelection={{
+            type: "checkbox",
+            selectedRowKeys: alreadySelectedKeys,
+            onChange: (rec) => {
+              setAlreadySelectedKeys(rec);
             },
-            {
-              key: "A grade",
-              text: "A - grade Owners",
-              onSelect: (records) => {
-                const AHavers = records.filter((key) => {
-                  return Students.find(
-                    (each) => each.key === key && each.grade === "A"
-                  );
-                });
-                setAlreadySelectedKeys(AHavers);
-              },
+            onSelect: (rec) => {
+              console.log(rec);
             },
-          ],
-        }}
-      ></Table>
+            getCheckboxProps: (rec) => ({
+            disabled: rec.grade === "D",
+          }),
+            selections: [
+              Table.SELECTION_NONE,
+              Table.SELECTION_ALL,
+              Table.SELECTION_INVERT,
+              {
+                key: "even",
+                text: "Select Even Rows",
+                onSelect: (allKeys) => {
+                  const selectedKeys = allKeys.filter((key) => {
+                    return key % 2 === 0;
+                  });
+                  setAlreadySelectedKeys(selectedKeys);
+                },
+              },
+              {
+                key: "A grade",
+                text: "A - grade Owners",
+                onSelect: (records) => {
+                  const AHavers = records.filter((key) => {
+                    return table2Data.find(
+                      (each) => each.key === key && each.grade === "A"
+                    );
+                  });
+                  setAlreadySelectedKeys(AHavers);
+                },
+              },
+            ],
+          }}
+          pagination={{
+            pageSize: 15,
+            hideOnSinglePage: true,
+          }}
+        ></Table>
+        <Modal
+          title="Edit Student"
+          open={isEditing}
+          okText="Save"
+          onCancel={() => {
+            setIsEditing(false);
+            setBeingEdited(null);
+          }}
+          onOk={() => {
+            setTable2Data((prev) => {
+              return prev.map((s) => {
+                if (s.id === beingEdited.id) return beingEdited;
+                return s;
+              });
+            });
+            setIsEditing(false);
+            setBeingEdited(null);
+          }}
+        >
+          <Input
+            value={beingEdited?.name}
+            onChange={(e) => {
+              setBeingEdited((prev) => {
+                return { ...prev, name: e.target.value };
+              });
+            }}
+          />
+          <Input
+            value={beingEdited?.email}
+            onChange={(e) => {
+              setBeingEdited((prev) => {
+                return { ...prev, email: e.target.value };
+              });
+            }}
+          />
+          <Input
+            value={beingEdited?.grade}
+            onChange={(e) => {
+              setBeingEdited((prev) => {
+                return { ...prev, grade: e.target.value };
+              });
+            }}
+          />
+        </Modal>
+      </div>
     </>
   );
 };

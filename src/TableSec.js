@@ -268,7 +268,12 @@ const TableSec = () => {
         loading={loading}
         pagination={{
           pageSize: 5,
+          total: 50,
           hideOnSinglePage: true,
+          onChange: (page) => {
+            // it consoles the page number:
+            console.log(page)
+          }
         }}
         rowSelection={{
           type: "checkbox",

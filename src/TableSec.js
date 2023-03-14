@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Table, Tag, Button, Modal, Input } from "antd";
-import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import {
+  DeleteOutlined,
+  EditOutlined,
+  SearchOutlined,
+} from "@ant-design/icons";
 
 const TableSec = () => {
   const [table1Data, setTable1Data] = useState([]);
@@ -104,6 +108,49 @@ const TableSec = () => {
       key: "2",
       title: "Student Name",
       dataIndex: "name",
+      filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => {
+        return (
+          <>
+            <Input
+              autoFocus
+              placeholder="search names"
+              onPressEnter={() => {
+                confirm();
+              }}
+              onBlur={() => {
+                confirm();
+              }}
+              onChange={(e) => {
+                setSelectedKeys(e.target.value ? [e.target.value] : []);
+                confirm({ closeDropdown: false })
+              }}
+              value={selectedKeys[0]}
+            ></Input>
+            <Button
+              onClick={() => {
+                confirm();
+              }}
+              type="primary"
+            >
+              Search
+            </Button>
+            <Button
+              onClick={() => {
+                clearFilters();
+              }}
+              type="primary"
+            >
+              Reset
+            </Button>
+          </>
+        );
+      },
+      filterIcon: () => {
+        return <SearchOutlined style={{ fontSize: "1.2rem" }} />;
+      },
+      onFilter: (value, record) => {
+        return record.name.toLowerCase().includes(value.toLowerCase());
+      },
     },
     {
       key: "3",
@@ -252,8 +299,8 @@ const TableSec = () => {
               console.log(rec);
             },
             getCheckboxProps: (rec) => ({
-            disabled: rec.grade === "D",
-          }),
+              disabled: rec.grade === "D",
+            }),
             selections: [
               Table.SELECTION_NONE,
               Table.SELECTION_ALL,

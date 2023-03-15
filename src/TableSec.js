@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Table, Tag, Button, Modal, Input } from "antd";
+import { Table, Tag, Button, Modal, Input, Form } from "antd";
 import {
   DeleteOutlined,
   EditOutlined,
@@ -12,6 +12,8 @@ const TableSec = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [beingEdited, setBeingEdited] = useState(null);
   const [alreadySelectedKeys, setAlreadySelectedKeys] = useState(["2"]);
+  const [editKey, setEditKey] = useState("");
+  const [form] = Form.useForm();
   const table1Column = [
     {
       key: "1",
@@ -108,6 +110,17 @@ const TableSec = () => {
       key: "2",
       title: "Student Name",
       dataIndex: "name",
+      render: (text, record) => {
+        if (record.key === editKey) {
+          return (
+            <Form.Item name="name">
+              <Input />
+            </Form.Item>
+          );
+        } else {
+          return text;
+        }
+      },
       filterDropdown: ({
         setSelectedKeys,
         selectedKeys,
@@ -161,6 +174,17 @@ const TableSec = () => {
       key: "3",
       title: "Student Email",
       dataIndex: "email",
+      render: (text, record) => {
+        if (record.key === editKey) {
+          return (
+            <Form.Item name="email">
+              <Input />
+            </Form.Item>
+          );
+        } else {
+          return text;
+        }
+      },
     },
     {
       key: "4",
@@ -176,7 +200,7 @@ const TableSec = () => {
       },
     },
     {
-      key: "",
+      key: "5",
       title: "Actions",
       render: (rec) => {
         return (
@@ -194,6 +218,31 @@ const TableSec = () => {
               }}
               onClick={() => onEditStudent(rec)}
             />
+          </>
+        );
+      },
+    },
+    {
+      key: "6",
+      title: "Actions",
+      render: (rec) => {
+        return (
+          <>
+            <Button
+              type="link"
+              onClick={() => {
+                setEditKey(rec.key);
+                form.setFieldsValue({
+                  name: rec.name,
+                  email: rec.email,
+                });
+              }}
+            >
+              EditRow
+            </Button>
+            <Button type="link" htmlType="submit">
+              SaveRow
+            </Button>
           </>
         );
       },
@@ -268,6 +317,19 @@ const TableSec = () => {
     setBeingEdited(rec);
   };
 
+  const onFinish = (val) => {
+    if (!editKey) return;
+    const updatedData = [...table2Data];
+    updatedData.splice(editKey - 1, 1, {
+      ...updatedData[editKey - 1],
+      key: editKey,
+      name: val.name,
+      email: val.email,
+    });
+    setTable2Data(updatedData);
+    setEditKey(null);
+  };
+
   return (
     <>
       <Table
@@ -299,54 +361,56 @@ const TableSec = () => {
         >
           Add a new Student
         </Button>
-        <Table
-          dataSource={table2Data}
-          columns={table2Column}
-          rowSelection={{
-            type: "checkbox",
-            selectedRowKeys: alreadySelectedKeys,
-            onChange: (rec) => {
-              setAlreadySelectedKeys(rec);
-            },
-            onSelect: (rec) => {
-              console.log(rec);
-            },
-            getCheckboxProps: (rec) => ({
-              disabled: rec.grade === "D",
-            }),
-            selections: [
-              Table.SELECTION_NONE,
-              Table.SELECTION_ALL,
-              Table.SELECTION_INVERT,
-              {
-                key: "even",
-                text: "Select Even Rows",
-                onSelect: (allKeys) => {
-                  const selectedKeys = allKeys.filter((key) => {
-                    return key % 2 === 0;
-                  });
-                  setAlreadySelectedKeys(selectedKeys);
-                },
+        <Form form={form} onFinish={onFinish}>
+          <Table
+            dataSource={table2Data}
+            columns={table2Column}
+            rowSelection={{
+              type: "checkbox",
+              selectedRowKeys: alreadySelectedKeys,
+              onChange: (rec) => {
+                setAlreadySelectedKeys(rec);
               },
-              {
-                key: "A grade",
-                text: "A - grade Owners",
-                onSelect: (records) => {
-                  const AHavers = records.filter((key) => {
-                    return table2Data.find(
-                      (each) => each.key === key && each.grade === "A"
-                    );
-                  });
-                  setAlreadySelectedKeys(AHavers);
-                },
+              onSelect: (rec) => {
+                console.log(rec);
               },
-            ],
-          }}
-          pagination={{
-            pageSize: 15,
-            hideOnSinglePage: true,
-          }}
-        ></Table>
+              getCheckboxProps: (rec) => ({
+                disabled: rec.grade === "D",
+              }),
+              selections: [
+                Table.SELECTION_NONE,
+                Table.SELECTION_ALL,
+                Table.SELECTION_INVERT,
+                {
+                  key: "even",
+                  text: "Select Even Rows",
+                  onSelect: (allKeys) => {
+                    const selectedKeys = allKeys.filter((key) => {
+                      return key % 2 === 0;
+                    });
+                    setAlreadySelectedKeys(selectedKeys);
+                  },
+                },
+                {
+                  key: "A grade",
+                  text: "A - grade Owners",
+                  onSelect: (records) => {
+                    const AHavers = records.filter((key) => {
+                      return table2Data.find(
+                        (each) => each.key === key && each.grade === "A"
+                      );
+                    });
+                    setAlreadySelectedKeys(AHavers);
+                  },
+                },
+              ],
+            }}
+            pagination={{
+              pageSize: 15,
+              hideOnSinglePage: true,
+            }}
+          ></Table>
+        </Form>
         <Modal
           title="Edit Student"
           open={isEditing}

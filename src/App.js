@@ -5,6 +5,7 @@ import Forms from "./Forms";
 import Selects from "./Selects";
 import Loading from "./Loading";
 import ValidationForm from "./ValidationForm";
+import FileUpload from "./FileUpload";
 
 function App() {
   const verDivider = {
@@ -16,15 +17,9 @@ function App() {
   return (
     <div className="App">
       <span style={{ fontSize: "2rem" }}>
-        <Divider
-          style={verDivider}
-          type="vertical"
-        />
+        <Divider style={verDivider} type="vertical" />
         Loading Section
-        <Divider
-          style={verDivider}
-          type="vertical"
-        />
+        <Divider style={verDivider} type="vertical" />
       </span>
       <Loading />
 
@@ -56,6 +51,15 @@ function App() {
       </Divider>
 
       <TableSec />
+
+      <Divider
+        orientation="center"
+        style={{ borderColor: "blue", fontSize: "2rem" }}
+      >
+        File Upload Section
+      </Divider>
+
+      <FileUpload />
 
       <Divider
         orientation="center"

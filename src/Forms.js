@@ -10,8 +10,8 @@ const Forms = () => {
     flexFlow: "column nowrap",
     alignItems: "center",
     justifyContent: "center",
-    border: "1px solid rgb(200, 200, 200)",
-    borderRadius: "20px",
+    border: "1px solid lightblue",
+    borderRadius: "10px",
   };
   const [alert, setAlert] = useState(false);
 

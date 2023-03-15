@@ -4,6 +4,7 @@ import Progresses from "./Progresses";
 import Forms from "./Forms";
 import Selects from "./Selects";
 import Loading from "./Loading";
+import ValidationForm from "./ValidationForm";
 
 function App() {
   const verDivider = {
@@ -45,6 +46,7 @@ function App() {
       </Divider>
 
       <Forms />
+      <ValidationForm />
 
       <Divider
         orientation="center"

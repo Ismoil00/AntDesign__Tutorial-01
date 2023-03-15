@@ -6,6 +6,7 @@ import Selects from "./Selects";
 import Loading from "./Loading";
 import ValidationForm from "./ValidationForm";
 import FileUpload from "./FileUpload";
+import Tags from "./Tags";
 
 function App() {
   const verDivider = {
@@ -80,6 +81,16 @@ function App() {
       </Divider>
 
       <Progresses />
+
+      <Divider
+        orientation="center"
+        style={{ borderColor: "blue", fontSize: "2rem" }}
+      >
+        Tags Section
+      </Divider>
+
+      <Tags />
+
     </div>
   );
 }

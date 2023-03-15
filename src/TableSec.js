@@ -15,7 +15,7 @@ const TableSec = () => {
   const table1Column = [
     {
       key: "1",
-      title: "ID",
+      title: "Order",
       dataIndex: "id",
       filters: [{ text: "10", value: 10 }],
       onFilter: (value, record) => {
@@ -108,7 +108,12 @@ const TableSec = () => {
       key: "2",
       title: "Student Name",
       dataIndex: "name",
-      filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => {
+      filterDropdown: ({
+        setSelectedKeys,
+        selectedKeys,
+        confirm,
+        clearFilters,
+      }) => {
         return (
           <>
             <Input
@@ -122,7 +127,7 @@ const TableSec = () => {
               }}
               onChange={(e) => {
                 setSelectedKeys(e.target.value ? [e.target.value] : []);
-                confirm({ closeDropdown: false })
+                confirm({ closeDropdown: false });
               }}
               value={selectedKeys[0]}
             ></Input>
@@ -199,7 +204,10 @@ const TableSec = () => {
     const fetchData = async () => {
       const res = await fetch("https://jsonplaceholder.typicode.com/todos");
       const data = await res.json();
-      setTable1Data(data.slice(0, 50));
+      const newData = data.map((item, index) => {
+        return { key: index, ...item };
+      });
+      setTable1Data(newData.slice(0, 50));
       setLoading(false);
     };
 
@@ -272,8 +280,8 @@ const TableSec = () => {
           hideOnSinglePage: true,
           onChange: (page) => {
             // it consoles the page number:
-            console.log(page)
-          }
+            console.log(page);
+          },
         }}
         rowSelection={{
           type: "checkbox",

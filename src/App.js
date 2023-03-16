@@ -10,6 +10,7 @@ import Tags from "./Tags";
 import Typographies from "./Typography";
 import Menu from "./Menu";
 import Avatar from "./Avatar";
+import Corusel from "./Corusel";
 
 function App() {
   const verDivider = {
@@ -120,7 +121,15 @@ function App() {
       </Divider>
 
       <Avatar />
-      
+
+      <Divider
+        orientation="center"
+        style={{ borderColor: "blue", fontSize: "2rem" }}
+      >
+        Carousel Section
+      </Divider>
+
+      <Corusel />
     </div>
   );
 }

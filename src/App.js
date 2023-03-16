@@ -7,6 +7,7 @@ import Loading from "./Loading";
 import ValidationForm from "./ValidationForm";
 import FileUpload from "./FileUpload";
 import Tags from "./Tags";
+import Paginations from "./Paginations";
 
 function App() {
   const verDivider = {
@@ -52,6 +53,15 @@ function App() {
       </Divider>
 
       <TableSec />
+
+      <Divider
+        orientation="center"
+        style={{ borderColor: "blue", fontSize: "2rem" }}
+      >
+        Pagination Section
+      </Divider>
+
+      <Paginations />
 
       <Divider
         orientation="center"

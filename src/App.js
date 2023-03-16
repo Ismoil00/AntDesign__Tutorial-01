@@ -9,6 +9,7 @@ import FileUpload from "./FileUpload";
 import Tags from "./Tags";
 import Typographies from "./Typography";
 import Menu from "./Menu";
+import Avatar from "./Avatar";
 
 function App() {
   const verDivider = {
@@ -110,6 +111,16 @@ function App() {
       </Divider>
 
       <Menu />
+
+      <Divider
+        orientation="center"
+        style={{ borderColor: "blue", fontSize: "2rem" }}
+      >
+        Avatar Section
+      </Divider>
+
+      <Avatar />
+      
     </div>
   );
 }

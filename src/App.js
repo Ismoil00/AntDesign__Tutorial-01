@@ -8,6 +8,7 @@ import ValidationForm from "./ValidationForm";
 import FileUpload from "./FileUpload";
 import Tags from "./Tags";
 import Typographies from "./Typography";
+import Menu from "./Menu";
 
 function App() {
   const verDivider = {
@@ -100,7 +101,15 @@ function App() {
       </Divider>
 
       <Typographies />
-      
+
+      <Divider
+        orientation="center"
+        style={{ borderColor: "blue", fontSize: "2rem" }}
+      >
+        Menu Section
+      </Divider>
+
+      <Menu />
     </div>
   );
 }

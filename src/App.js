@@ -7,6 +7,10 @@ import Loading from "./Loading";
 import ValidationForm from "./ValidationForm";
 import FileUpload from "./FileUpload";
 import Tags from "./Tags";
+import Typographies from "./Typography";
+import Menu from "./Menu";
+import Avatar from "./Avatar";
+import Corusel from "./Corusel";
 import Paginations from "./Paginations";
 
 function App() {
@@ -101,6 +105,41 @@ function App() {
 
       <Tags />
 
+      <Divider
+        orientation="center"
+        style={{ borderColor: "blue", fontSize: "2rem" }}
+      >
+        Typography Section
+      </Divider>
+
+      <Typographies />
+
+      <Divider
+        orientation="center"
+        style={{ borderColor: "blue", fontSize: "2rem" }}
+      >
+        Menu Section
+      </Divider>
+
+      <Menu />
+
+      <Divider
+        orientation="center"
+        style={{ borderColor: "blue", fontSize: "2rem" }}
+      >
+        Avatar Section
+      </Divider>
+
+      <Avatar />
+
+      <Divider
+        orientation="center"
+        style={{ borderColor: "blue", fontSize: "2rem" }}
+      >
+        Carousel Section
+      </Divider>
+
+      <Corusel />
     </div>
   );
 }

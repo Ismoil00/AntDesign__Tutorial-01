@@ -12,6 +12,7 @@ import Menu from "./Menu";
 import Avatar from "./Avatar";
 import Corusel from "./Corusel";
 import Paginations from "./Paginations";
+import Tab from "./Tab";
 
 function App() {
   const verDivider = {
@@ -66,6 +67,15 @@ function App() {
       </Divider>
 
       <Paginations />
+
+      <Divider
+        orientation="center"
+        style={{ borderColor: "blue", fontSize: "2rem" }}
+      >
+        Tabs Section
+      </Divider>
+
+      <Tab />
 
       <Divider
         orientation="center"

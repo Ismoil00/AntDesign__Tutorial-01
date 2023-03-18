@@ -1,6 +1,5 @@
 import { Steps } from "antd";
 import { useState } from "react";
-const { Step } = Steps;
 
 const StepsSection = () => {
   const items = [
@@ -48,6 +47,7 @@ const StepsSection = () => {
           setDotCur(c);
         }}
       />
+      <br />
       <Steps
         direction="vertical"
         current={vertCur}
@@ -61,6 +61,7 @@ const StepsSection = () => {
           setVertCur(c);
         }}
       />
+      <br />
       <Steps
         items={[
           { status: "finish", title: "Finish" },

@@ -14,12 +14,18 @@ import Corusel from "./Corusel";
 import Paginations from "./Paginations";
 import Tab from "./Tab";
 import StepsSection from "./StepsSec";
+import CollapseExpand from "./CollapseExpand";
 
 function App() {
   const verDivider = {
     borderColor: "blue",
     fontSize: "2.5rem",
     margin: "0 20px",
+  };
+  const divider = {
+    borderColor: "blue",
+    fontSize: "2rem",
+    margin: "100px 0",
   };
 
   return (
@@ -34,7 +40,7 @@ function App() {
       <Divider
         orientation="center"
         dashed
-        style={{ borderColor: "blue", fontSize: "2rem" }}
+        style={divider}
       >
         Selects Section
       </Divider>
@@ -43,7 +49,7 @@ function App() {
 
       <Divider
         orientation="center"
-        style={{ borderColor: "blue", fontSize: "2rem" }}
+        style={divider}
       >
         Form Section
       </Divider>
@@ -53,7 +59,7 @@ function App() {
 
       <Divider
         orientation="center"
-        style={{ borderColor: "blue", fontSize: "2rem" }}
+        style={divider}
       >
         Table Section
       </Divider>
@@ -62,7 +68,7 @@ function App() {
 
       <Divider
         orientation="center"
-        style={{ borderColor: "blue", fontSize: "2rem" }}
+        style={divider}
       >
         Pagination Section
       </Divider>
@@ -71,7 +77,7 @@ function App() {
 
       <Divider
         orientation="center"
-        style={{ borderColor: "blue", fontSize: "2rem" }}
+        style={divider}
       >
         Tabs Section
       </Divider>
@@ -80,7 +86,7 @@ function App() {
 
       <Divider
         orientation="center"
-        style={{ borderColor: "blue", fontSize: "2rem" }}
+        style={divider}
       >
         File Upload Section
       </Divider>
@@ -89,7 +95,7 @@ function App() {
 
       <Divider
         orientation="center"
-        style={{ borderColor: "blue", fontSize: "2rem" }}
+        style={divider}
       >
         Date Pickers
       </Divider>
@@ -104,7 +110,7 @@ function App() {
 
       <Divider
         orientation="center"
-        style={{ borderColor: "blue", fontSize: "2rem" }}
+        style={divider}
       >
         Progress Section
       </Divider>
@@ -113,7 +119,7 @@ function App() {
 
       <Divider
         orientation="center"
-        style={{ borderColor: "blue", fontSize: "2rem" }}
+        style={divider}
       >
         Tags Section
       </Divider>
@@ -122,7 +128,7 @@ function App() {
 
       <Divider
         orientation="center"
-        style={{ borderColor: "blue", fontSize: "2rem" }}
+        style={divider}
       >
         Typography Section
       </Divider>
@@ -131,7 +137,7 @@ function App() {
 
       <Divider
         orientation="center"
-        style={{ borderColor: "blue", fontSize: "2rem" }}
+        style={divider}
       >
         Menu Section
       </Divider>
@@ -140,7 +146,7 @@ function App() {
 
       <Divider
         orientation="center"
-        style={{ borderColor: "blue", fontSize: "2rem" }}
+        style={divider}
       >
         Avatar Section
       </Divider>
@@ -149,7 +155,7 @@ function App() {
 
       <Divider
         orientation="center"
-        style={{ borderColor: "blue", fontSize: "2rem" }}
+        style={divider}
       >
         Carousel Section
       </Divider>
@@ -158,13 +164,21 @@ function App() {
 
       <Divider
         orientation="center"
-        style={{ borderColor: "blue", fontSize: "2rem" }}
+        style={divider}
       >
         Steps Section
       </Divider>
 
       <StepsSection />
 
+      <Divider
+        orientation="center"
+        style={divider}
+      >
+        Collapse and Expande Section
+      </Divider>
+
+      <CollapseExpand />
     </div>
   );
 }

@@ -13,6 +13,7 @@ import Avatar from "./Avatar";
 import Corusel from "./Corusel";
 import Paginations from "./Paginations";
 import Tab from "./Tab";
+import StepsSection from "./StepsSec";
 
 function App() {
   const verDivider = {
@@ -93,7 +94,11 @@ function App() {
         Date Pickers
       </Divider>
 
-      <DatePicker picker="date" />
+      <DatePicker
+        picker="date"
+        rootClassName="rootClass"
+        popupClassName="popupClass"
+      />
       <TimePicker picker="date" />
       <DatePicker.RangePicker picker="date" />
 
@@ -150,6 +155,16 @@ function App() {
       </Divider>
 
       <Corusel />
+
+      <Divider
+        orientation="center"
+        style={{ borderColor: "blue", fontSize: "2rem" }}
+      >
+        Steps Section
+      </Divider>
+
+      <StepsSection />
+
     </div>
   );
 }

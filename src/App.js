@@ -17,6 +17,7 @@ import StepsSection from "./StepsSec";
 import CollapseExpand from "./CollapseExpand";
 import ToggleSwitches from "./ToggleSwitches";
 import DrawerSec from "./DrawerSec";
+import CalendarSec from "./CalendarSec";
 
 function App() {
   const verDivider = {
@@ -39,66 +40,44 @@ function App() {
       </span>
       <Loading />
 
-      <Divider
-        orientation="center"
-        dashed
-        style={divider}
-      >
+      <Divider orientation="center" dashed style={divider}>
         Selects Section
       </Divider>
 
       <Selects />
 
-      <Divider
-        orientation="center"
-        style={divider}
-      >
+      <Divider orientation="center" style={divider}>
         Form Section
       </Divider>
 
       <Forms />
       <ValidationForm />
 
-      <Divider
-        orientation="center"
-        style={divider}
-      >
+      <Divider orientation="center" style={divider}>
         Table Section
       </Divider>
 
       <TableSec />
 
-      <Divider
-        orientation="center"
-        style={divider}
-      >
+      <Divider orientation="center" style={divider}>
         Pagination Section
       </Divider>
 
       <Paginations />
 
-      <Divider
-        orientation="center"
-        style={divider}
-      >
+      <Divider orientation="center" style={divider}>
         Tabs Section
       </Divider>
 
       <Tab />
 
-      <Divider
-        orientation="center"
-        style={divider}
-      >
+      <Divider orientation="center" style={divider}>
         File Upload Section
       </Divider>
 
       <FileUpload />
 
-      <Divider
-        orientation="center"
-        style={divider}
-      >
+      <Divider orientation="center" style={divider}>
         Date Pickers
       </Divider>
 
@@ -110,95 +89,71 @@ function App() {
       <TimePicker picker="date" />
       <DatePicker.RangePicker picker="date" />
 
-      <Divider
-        orientation="center"
-        style={divider}
-      >
+      <Divider orientation="center" style={divider}>
         Progress Section
       </Divider>
 
       <Progresses />
 
-      <Divider
-        orientation="center"
-        style={divider}
-      >
+      <Divider orientation="center" style={divider}>
         Tags Section
       </Divider>
 
       <Tags />
 
-      <Divider
-        orientation="center"
-        style={divider}
-      >
+      <Divider orientation="center" style={divider}>
         Typography Section
       </Divider>
 
       <Typographies />
 
-      <Divider
-        orientation="center"
-        style={divider}
-      >
+      <Divider orientation="center" style={divider}>
         Menu Section
       </Divider>
 
       <Menu />
 
-      <Divider
-        orientation="center"
-        style={divider}
-      >
+      <Divider orientation="center" style={divider}>
         Avatar Section
       </Divider>
 
       <Avatar />
 
-      <Divider
-        orientation="center"
-        style={divider}
-      >
+      <Divider orientation="center" style={divider}>
         Carousel Section
       </Divider>
 
       <Corusel />
 
-      <Divider
-        orientation="center"
-        style={divider}
-      >
+      <Divider orientation="center" style={divider}>
         Steps Section
       </Divider>
 
       <StepsSection />
 
-      <Divider
-        orientation="center"
-        style={divider}
-      >
+      <Divider orientation="center" style={divider}>
         Collapse and Expande Section
       </Divider>
 
       <CollapseExpand />
 
-      <Divider
-        orientation="center"
-        style={divider}
-      >
+      <Divider orientation="center" style={divider}>
         Toggles and Switches Section
       </Divider>
 
       <ToggleSwitches />
 
-      <Divider
-        orientation="center"
-        style={divider}
-      >
+      <Divider orientation="center" style={divider}>
         Drawer Section
       </Divider>
 
       <DrawerSec />
+
+      <Divider orientation="center" style={divider}>
+        Calendar Section
+      </Divider>
+
+      <CalendarSec />
     </div>
   );
 }

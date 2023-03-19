@@ -15,6 +15,7 @@ import Paginations from "./Paginations";
 import Tab from "./Tab";
 import StepsSection from "./StepsSec";
 import CollapseExpand from "./CollapseExpand";
+import ToggleSwitches from "./ToggleSwitches";
 
 function App() {
   const verDivider = {
@@ -179,6 +180,15 @@ function App() {
       </Divider>
 
       <CollapseExpand />
+
+      <Divider
+        orientation="center"
+        style={divider}
+      >
+        Toggles and Switches Section
+      </Divider>
+
+      <ToggleSwitches />
     </div>
   );
 }

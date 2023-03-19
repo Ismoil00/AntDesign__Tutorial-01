@@ -16,6 +16,7 @@ import Tab from "./Tab";
 import StepsSection from "./StepsSec";
 import CollapseExpand from "./CollapseExpand";
 import ToggleSwitches from "./ToggleSwitches";
+import DrawerSec from "./DrawerSec";
 
 function App() {
   const verDivider = {
@@ -189,6 +190,15 @@ function App() {
       </Divider>
 
       <ToggleSwitches />
+
+      <Divider
+        orientation="center"
+        style={divider}
+      >
+        Drawer Section
+      </Divider>
+
+      <DrawerSec />
     </div>
   );
 }

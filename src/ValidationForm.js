@@ -113,6 +113,11 @@ const ValidationForm = () => {
         label="Gender: "
         requiredMark="optional"
         hasFeedback
+        rules={[
+          {
+            warningOnly: true,
+          }
+        ]}
       >
         <Select placeholder="Select your gender!">
           <Select.Option value="male">Male</Select.Option>
@@ -127,6 +132,7 @@ const ValidationForm = () => {
           {
             required: true,
             message: "Date of Birth is Required!",
+            warningOnly: true,
           },
         ]}
         hasFeedback

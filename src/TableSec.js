@@ -466,6 +466,7 @@ const TableSec = () => {
 export default TableSec;
 
 const ExpandableTable = () => {
+  const [searchedVal, setSearchedVal] = useState("");
   const style = {
     marginTop: "100px",
   };
@@ -474,6 +475,14 @@ const ExpandableTable = () => {
       key: 1,
       title: "Name",
       dataIndex: "name",
+      filteredValue: [searchedVal],
+      onFilter: (val, rec) => {
+        return (
+          String(rec.name).toLowerCase().includes(val.toLowerCase()) ||
+          String(rec.age).toLowerCase().includes(val.toLowerCase()) ||
+          String(rec.address).toLowerCase().includes(val.toLowerCase())
+        );
+      },
     },
     {
       key: 2,
@@ -504,23 +513,32 @@ const ExpandableTable = () => {
   }
 
   return (
-    <Table
-      caption={"Expandable Table"}
-      style={style}
-      columns={columns}
-      dataSource={data}
-      expandable={{
-        rowExpandable: (rec) => rec.age < 28,
-        expandedRowRender: (rec) => {
-          if (rec.age === 25) {
-            return <NestedTable />;
-          }
-          return <p>{rec.desc}</p>;
-        },
-        defaultExpandAllRows: false,
-        defaultExpandedRowKeys: [5],
-        expandRowByClick: true,
-        /* expandIcon: ({ expanded, onExpand, record }) => {
+    <div style={style}>
+      <Input.Search
+        placeholder="Search only names column..."
+        onSearch={(val) => {
+          setSearchedVal(val);
+        }}
+        onChange={(e) => {
+          setSearchedVal(e.target.value);
+        }}
+      />
+      <Table
+        caption={"Expandable Table"}
+        columns={columns}
+        dataSource={data}
+        expandable={{
+          rowExpandable: (rec) => rec.age < 28,
+          expandedRowRender: (rec) => {
+            if (rec.age === 25) {
+              return <NestedTable />;
+            }
+            return <p>{rec.desc}</p>;
+          },
+          defaultExpandAllRows: false,
+          defaultExpandedRowKeys: [5],
+          expandRowByClick: true,
+          /* expandIcon: ({ expanded, onExpand, record }) => {
           if (record.age >= 28) return null;
           return expanded ? (
             <MinusCircleTwoTone
@@ -536,8 +554,9 @@ const ExpandableTable = () => {
             />
           );
         }, */
-      }}
-    />
+        }}
+      />
+    </div>
   );
 };
 

@@ -7,8 +7,9 @@ import {
   PlusCircleTwoTone,
   MinusCircleTwoTone,
 } from "@ant-design/icons";
+import { createPath } from "react-router-dom";
 
-const TableSec = () => {
+export default function TableSec() {
   const [table1Data, setTable1Data] = useState([]);
   const [loading, setLoading] = useState(true);
   const [isEditing, setIsEditing] = useState(false);
@@ -458,12 +459,11 @@ const TableSec = () => {
           />
         </Modal>
         <ExpandableTable />
+        <HorizontalTable />
       </div>
     </>
   );
-};
-
-export default TableSec;
+}
 
 const ExpandableTable = () => {
   const [searchedVal, setSearchedVal] = useState("");
@@ -514,6 +514,7 @@ const ExpandableTable = () => {
 
   return (
     <div style={style}>
+      <h4 style={{ color: "red", textAlign: "center" }}>Expandable Table</h4>
       <Input.Search
         placeholder="Search only names column..."
         onSearch={(val) => {
@@ -575,4 +576,42 @@ const NestedTable = () => {
   }
 
   return <Table columns={columns} dataSource={data} />;
+};
+
+const HorizontalTable = () => {
+  const columns = [];
+  const data = [];
+  for (let c = 0; c < 20; c++) {
+    columns.push({
+      key: c,
+      title: `Column ${c + 1}`,
+      dataIndex: `col_${c + 1}`,
+      fixed: c === 0 ? "left" : c === 19 ? "right" : null,
+    });
+  }
+  for (let d = 0; d < 50; d++) {
+    const rowData = {};
+    rowData["key"] = d;
+    for (let c = 0; c < 20; c++) {
+      rowData[`col_${c + 1}`] = `R${d + 1}C${c + 1}`;
+    }
+    data.push(rowData);
+  }
+
+  return (
+    <>
+      <h4 style={{ color: "red", textAlign: "center" }}>Horizontal Table</h4>
+      <Table
+        style={{ maxWidth: "800px" }}
+        scroll={{ x: true, y: "500px", scrollToFirstRowOnChange: true }}
+        columns={columns}
+        dataSource={data}
+        caption={"Horizontal Table"}
+        pagination={{
+          pageSize: 25,
+          hideOnSinglePage: true,
+        }}
+      ></Table>
+    </>
+  );
 };

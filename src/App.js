@@ -18,6 +18,8 @@ import CollapseExpand from "./CollapseExpand";
 import ToggleSwitches from "./ToggleSwitches";
 import DrawerSec from "./DrawerSec";
 import CalendarSec from "./CalendarSec";
+import TimerSec from "./TimerSec";
+import RightClickMenu from "./RightClickMenu";
 
 function App() {
   const verDivider = {
@@ -154,6 +156,18 @@ function App() {
       </Divider>
 
       <CalendarSec />
+
+      <Divider orientation="center" style={divider}>
+        Timer Section
+      </Divider>
+
+      <TimerSec />
+
+      <Divider orientation="center" style={divider}>
+        Right Click Menu Section
+      </Divider>
+
+      <RightClickMenu />
     </div>
   );
 }

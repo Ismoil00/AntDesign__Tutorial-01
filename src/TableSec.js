@@ -4,6 +4,8 @@ import {
   DeleteOutlined,
   EditOutlined,
   SearchOutlined,
+  PlusCircleTwoTone,
+  MinusCircleTwoTone,
 } from "@ant-design/icons";
 
 const TableSec = () => {
@@ -455,9 +457,103 @@ const TableSec = () => {
             }}
           />
         </Modal>
+        <ExpandableTable />
       </div>
     </>
   );
 };
 
 export default TableSec;
+
+const ExpandableTable = () => {
+  const style = {
+    marginTop: "100px",
+  };
+  const columns = [
+    {
+      key: 1,
+      title: "Name",
+      dataIndex: "name",
+    },
+    {
+      key: 2,
+      title: "Age",
+      dataIndex: "age",
+      render: (index, text) => {
+        if (index === 25) {
+          return <div style={{ color: "red" }}>{text.age}</div>;
+        }
+        return text.age;
+      },
+    },
+    {
+      key: 3,
+      title: "Address",
+      dataIndex: "address",
+    },
+  ];
+  const data = [];
+  for (let i = 1; i < 10; i++) {
+    data.push({
+      key: i,
+      name: "Name " + i,
+      age: 20 + i,
+      address: "Address " + i,
+      desc: "Description " + i,
+    });
+  }
+
+  return (
+    <Table
+      caption={"Expandable Table"}
+      style={style}
+      columns={columns}
+      dataSource={data}
+      expandable={{
+        rowExpandable: (rec) => rec.age < 28,
+        expandedRowRender: (rec) => {
+          if (rec.age === 25) {
+            return <NestedTable />;
+          }
+          return <p>{rec.desc}</p>;
+        },
+        defaultExpandAllRows: false,
+        defaultExpandedRowKeys: [5],
+        expandRowByClick: true,
+        /* expandIcon: ({ expanded, onExpand, record }) => {
+          if (record.age >= 28) return null;
+          return expanded ? (
+            <MinusCircleTwoTone
+              onClick={(e) => {
+                onExpand(record, e);
+              }}
+            />
+          ) : (
+            <PlusCircleTwoTone
+              onClick={(e) => {
+                onExpand(record, e);
+              }}
+            />
+          );
+        }, */
+      }}
+    />
+  );
+};
+
+const NestedTable = () => {
+  const columns = [
+    { key: 1, title: "Company Name", dataIndex: "compName" },
+    { key: 2, title: "Company Revune", dataIndex: "compRevune" },
+  ];
+  const data = [];
+  for (let a = 5; a < 10; a++) {
+    data.push({
+      key: a,
+      compName: "Name " + a,
+      compRevune: "Revune " + a,
+    });
+  }
+
+  return <Table columns={columns} dataSource={data} />;
+};

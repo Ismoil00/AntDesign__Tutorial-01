@@ -2,7 +2,7 @@ import React from "react";
 import { Form, Alert, Input, Button, message } from "antd";
 import { useState } from "react";
 
-const Forms = () => {
+export default function Forms() {
   const formStyle = {
     width: "400px",
     padding: "20px 20px 0 20px",
@@ -51,8 +51,115 @@ const Forms = () => {
           </Button>
         </Form.Item>
       </Form>
+      <CustomForm />
     </>
+  );
+}
+
+const CustomForm = () => {
+  const formStyle = {
+    width: "400px",
+    padding: "20px",
+    display: "flex",
+    flexFlow: "column nowrap",
+    alignItems: "center",
+    justifyContent: "center",
+    border: "1px solid lightblue",
+    borderRadius: "10px",
+  };
+
+  const onFinish = (val) => {
+    console.log(val);
+  };
+
+  const onFailedFinished = (err) => {
+    console.log(err);
+  };
+
+  return (
+    <Form
+      style={formStyle}
+      onFinish={onFinish}
+      onFinishFailed={onFailedFinished}
+      initialValues={{playerScores: 0, adminEmail: "admin@gmail.com"}}
+    >
+      <Form.Item
+        name={"playerName"}
+        label="Player Name"
+        rules={[
+          {
+            required: true,
+            message: "Please, provide 'Player Name!'",
+          },
+        ]}
+        placeholder="type player name"
+      >
+        <Input />
+      </Form.Item>
+      <Form.Item
+        name={"playerScores"}
+        label="Player Scores"
+        rules={[{
+          validator(rule, value) {
+            return new Promise((resolve, reject) => {
+              if (value >= 0) {
+                resolve()
+              } else {
+                reject("The Score value should be greater zero!")
+              }
+            })
+          }
+        }]}
+      >
+        <PlayerScores />
+      </Form.Item>
+      <Form.Item
+        name={"adminEmail"}
+        label="Admin Email"
+        rules={[
+          {
+            type: "email",
+            message: "It is not a valid email!"
+          },
+          {
+          validator(rule, value) {
+            return new Promise((resolve, reject) => {
+              if (String(value).startsWith("admin")) {
+                resolve()
+              } else {
+                reject("This is not Admin Email!")
+              }
+            })
+          }
+        }]}
+      >
+        <Input />
+      </Form.Item>
+      <Button htmlType="submit" type="primary">
+        Submit
+      </Button>
+    </Form>
   );
 };
 
-export default Forms;
+const PlayerScores = ({ value, onChange }) => {
+  return (
+    <>
+      <Button
+        onClick={() => {
+          onChange(value - 1);
+        }}
+      >
+        -
+      </Button>
+      <span>{value}</span>
+      <Button
+        onClick={() => {
+          onChange(value + 1);
+        }}
+      >
+        +
+      </Button>
+    </>
+  );
+};

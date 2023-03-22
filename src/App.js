@@ -23,6 +23,7 @@ import TimerSec from "./TimerSec";
 import RightClickMenu from "./RightClickMenu";
 import SkeletonSec from "./SkeletonSec";
 import RatingSec from "./RatingSec";
+import AutoComlete from "./AutoComlete";
 
 function App() {
   const verDivider = {
@@ -183,6 +184,12 @@ function App() {
       </Divider>
 
       <RatingSec />
+
+      <Divider orientation="center" style={divider}>
+        AutoComplete Section
+      </Divider>
+
+      <AutoComlete />
     </div>
   );
 }

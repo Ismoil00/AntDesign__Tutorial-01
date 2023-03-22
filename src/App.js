@@ -1,3 +1,4 @@
+// import { HeartFilled } from "@ant-design/icons";
 import { DatePicker, TimePicker, Divider } from "antd";
 import TableSec from "./TableSec";
 import Progresses from "./Progresses";
@@ -21,6 +22,7 @@ import CalendarSec from "./CalendarSec";
 import TimerSec from "./TimerSec";
 import RightClickMenu from "./RightClickMenu";
 import SkeletonSec from "./SkeletonSec";
+import RatingSec from "./RatingSec";
 
 function App() {
   const verDivider = {
@@ -175,6 +177,12 @@ function App() {
       </Divider>
 
       <SkeletonSec />
+
+      <Divider orientation="center" style={divider}>
+        Rating Section
+      </Divider>
+
+      <RatingSec />
     </div>
   );
 }

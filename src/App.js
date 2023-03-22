@@ -20,6 +20,7 @@ import DrawerSec from "./DrawerSec";
 import CalendarSec from "./CalendarSec";
 import TimerSec from "./TimerSec";
 import RightClickMenu from "./RightClickMenu";
+import SkeletonSec from "./SkeletonSec";
 
 function App() {
   const verDivider = {
@@ -168,6 +169,12 @@ function App() {
       </Divider>
 
       <RightClickMenu />
+
+      <Divider orientation="center" style={divider}>
+        Skeletons Section
+      </Divider>
+
+      <SkeletonSec />
     </div>
   );
 }

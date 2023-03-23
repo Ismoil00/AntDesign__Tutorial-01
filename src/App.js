@@ -24,6 +24,7 @@ import RightClickMenu from "./RightClickMenu";
 import SkeletonSec from "./SkeletonSec";
 import RatingSec from "./RatingSec";
 import AutoComlete from "./AutoComlete";
+import MultiStepForm from "./MultiStepForm";
 
 function App() {
   const verDivider = {
@@ -58,6 +59,7 @@ function App() {
 
       <Forms />
       <ValidationForm />
+      <MultiStepForm />
 
       <Divider orientation="center" style={divider}>
         Table Section

@@ -26,6 +26,7 @@ import RatingSec from "./RatingSec";
 import AutoComlete from "./AutoComlete";
 import MultiStepForm from "./MultiStepForm";
 import UseWatchHook from "./UseWatchHook";
+import CardSec from "./CardSec";
 
 function App() {
   const verDivider = {
@@ -199,6 +200,12 @@ function App() {
       </Divider>
 
       <UseWatchHook />
+
+      <Divider orientation="center" style={divider}>
+        Cards Section
+      </Divider>
+
+      <CardSec />
     </div>
   );
 }

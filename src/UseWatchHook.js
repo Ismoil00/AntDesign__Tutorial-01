@@ -5,7 +5,6 @@ const UseWatchHook = () => {
   const [formOne] = Form.useForm();
   const name = Form.useWatch("myName", formOne);
   const expertise = Form.useWatch("expertise", formOne);
-  console.log(expertise);
 
   return (
     <div>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Table, Tag, Button, Modal, Input, Form } from "antd";
+import { Table, Tag, Button, Modal, Input, Form, Select, Switch } from "antd";
 import {
   DeleteOutlined,
   EditOutlined,
@@ -10,6 +10,13 @@ import {
 import { createPath } from "react-router-dom";
 
 export default function TableSec() {
+  const divStyle = {
+    display: "flex",
+    flexFlow: "column nowrap",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: "50px",
+  };
   const [table1Data, setTable1Data] = useState([]);
   const [loading, setLoading] = useState(true);
   const [isEditing, setIsEditing] = useState(false);
@@ -334,7 +341,7 @@ export default function TableSec() {
   };
 
   return (
-    <>
+    <div style={divStyle}>
       <Table
         dataSource={table1Data}
         columns={table1Column}
@@ -356,7 +363,6 @@ export default function TableSec() {
           hideSelectAll: true,
         }}
       ></Table>
-
       <div>
         <Button
           onClick={AddingNewStudent}
@@ -458,17 +464,18 @@ export default function TableSec() {
             }}
           />
         </Modal>
-        <ExpandableTable />
-        <HorizontalTable />
       </div>
-    </>
+      <ExpandableTable />
+      <HorizontalTable />
+      <SortByColumn />
+    </div>
   );
 }
 
 const ExpandableTable = () => {
   const [searchedVal, setSearchedVal] = useState("");
   const style = {
-    marginTop: "100px",
+    width: "70%",
   };
   const columns = [
     {
@@ -599,7 +606,7 @@ const HorizontalTable = () => {
   }
 
   return (
-    <>
+    <div>
       <h4 style={{ color: "red", textAlign: "center" }}>Horizontal Table</h4>
       <Table
         style={{ maxWidth: "800px" }}
@@ -612,6 +619,70 @@ const HorizontalTable = () => {
           hideOnSinglePage: true,
         }}
       ></Table>
-    </>
+    </div>
+  );
+};
+
+const SortByColumn = () => {
+  const TableStyle = {
+    width: "35vw",
+  };
+  const columns = [
+    {
+      key: 1,
+      title: "Name",
+      dataIndex: "name",
+    },
+    {
+      key: 2,
+      title: "Age",
+      dataIndex: "age",
+    },
+  ];
+  const [data, setData] = useState([
+    { name: "Ismoil", age: 25 },
+    { name: "Sorbon", age: 26 },
+    { name: "Buzurg", age: 24 },
+    { name: "Umed", age: 20 },
+    { name: "Somon", age: 23 },
+  ]);
+  const [ascending, setAscending] = useState(true);
+
+  const onFilterChange = (filter) => {
+    const sortedData = [...data];
+    if (filter === "name") {
+      sortedData.sort((a, b) =>
+        a.name > b.name ? 1 : a.name === b.name ? 0 : -1
+      );
+    } else if (filter === "age") {
+      sortedData.sort((a, b) => a.age - b.age);
+    }
+    setData(sortedData);
+  };
+
+  const updatedData = ascending ? [...data] : [...data].reverse();
+
+  return (
+    <div>
+      <span style={{ marginRight: "10px" }}>Filter: </span>
+      <Select placeholder="Filter" onChange={onFilterChange}>
+        <Select.Option value="name">Name</Select.Option>
+        <Select.Option value="age">Age</Select.Option>
+      </Select>
+      <Switch
+        style={{ marginLeft: "10px" }}
+        checkedChildren="Asc"
+        unCheckedChildren="Desc"
+        defaultChecked={ascending}
+        onChange={setAscending}
+      />
+      <Table
+        caption="Filtering Table"
+        style={TableStyle}
+        columns={columns}
+        dataSource={updatedData}
+      />
+      ;
+    </div>
   );
 };

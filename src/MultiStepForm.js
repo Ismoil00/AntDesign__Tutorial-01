@@ -96,7 +96,7 @@ const LoginForm = ({ onFinish, initialValues }) => {
           },
         ]}
       >
-        <Input placeholder="Type your email" id={"email"} />
+        <Input placeholder="Type your email" id={"email-second"} />
       </Form.Item>
       <Form.Item
         label="Password"
@@ -108,7 +108,7 @@ const LoginForm = ({ onFinish, initialValues }) => {
           },
         ]}
       >
-        <Input.Password placeholder="Type your password" id={"password"} />
+        <Input.Password placeholder="Type your password" id={"password-second"} />
       </Form.Item>
       <Button type="primary" htmlType="submit">
         Continue

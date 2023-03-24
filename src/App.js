@@ -25,6 +25,7 @@ import SkeletonSec from "./SkeletonSec";
 import RatingSec from "./RatingSec";
 import AutoComlete from "./AutoComlete";
 import MultiStepForm from "./MultiStepForm";
+import UseWatchHook from "./UseWatchHook";
 
 function App() {
   const verDivider = {
@@ -192,6 +193,12 @@ function App() {
       </Divider>
 
       <AutoComlete />
+
+      <Divider orientation="center" style={divider}>
+        useWatch() Hook
+      </Divider>
+
+      <UseWatchHook />
     </div>
   );
 }

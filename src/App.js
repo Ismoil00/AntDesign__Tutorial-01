@@ -29,6 +29,7 @@ import MultiStepForm from "./MultiStepForm";
 import UseWatchHook from "./UseWatchHook";
 import CardSec from "./CardSec";
 import ResponsiveLeftMenu from "./ResponsiveLeftMenu";
+import FloatButtons from "./FloatButtons";
 
 function App() {
   const [responsiveMenu, setResponsiveMenu] = useState(false);
@@ -69,6 +70,8 @@ function App() {
             <Divider style={verDivider} type="vertical" />
           </span>
           <Loading />
+          
+          <FloatButtons />
 
           <Divider orientation="center" dashed style={divider}>
             Selects Section

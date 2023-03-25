@@ -1,4 +1,5 @@
 // import { HeartFilled } from "@ant-design/icons";
+import { useState } from "react";
 import { DatePicker, TimePicker, Divider } from "antd";
 import TableSec from "./TableSec";
 import Progresses from "./Progresses";
@@ -27,8 +28,10 @@ import AutoComlete from "./AutoComlete";
 import MultiStepForm from "./MultiStepForm";
 import UseWatchHook from "./UseWatchHook";
 import CardSec from "./CardSec";
+import ResponsiveLeftMenu from "./ResponsiveLeftMenu";
 
 function App() {
+  const [responsiveMenu, setResponsiveMenu] = useState(false);
   const verDivider = {
     borderColor: "blue",
     fontSize: "2.5rem",
@@ -41,171 +44,193 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <span style={{ fontSize: "2rem" }}>
-        <Divider style={verDivider} type="vertical" />
-        Loading Section
-        <Divider style={verDivider} type="vertical" />
-      </span>
-      <Loading />
+    <div className={responsiveMenu ? "ResponsiveLeftMenu" : "App"}>
+      {!responsiveMenu ? (
+        <>
+          <h1
+            onClick={setResponsiveMenu}
+            style={{
+              color: "red",
+              fontWeight: "bold",
+              cursor: "pointer",
+              fontFamily: "cursive",
+            }}
+          >
+            Display Responsive Left Menu
+          </h1>
 
-      <Divider orientation="center" dashed style={divider}>
-        Selects Section
-      </Divider>
+          <Divider
+            style={{ margin: "30px 0", borderColor: "blue", fontSize: "2rem" }}
+          />
 
-      <Selects />
+          <span style={{ fontSize: "2rem" }}>
+            <Divider style={verDivider} type="vertical" />
+            Loading Section
+            <Divider style={verDivider} type="vertical" />
+          </span>
+          <Loading />
 
-      <Divider orientation="center" style={divider}>
-        Form Section
-      </Divider>
+          <Divider orientation="center" dashed style={divider}>
+            Selects Section
+          </Divider>
 
-      <Forms />
-      <ValidationForm />
-      <MultiStepForm />
+          <Selects />
 
-      <Divider orientation="center" style={divider}>
-        Table Section
-      </Divider>
+          <Divider orientation="center" style={divider}>
+            Form Section
+          </Divider>
 
-      <TableSec />
+          <Forms />
+          <ValidationForm />
+          <MultiStepForm />
 
-      <Divider orientation="center" style={divider}>
-        Pagination Section
-      </Divider>
+          <Divider orientation="center" style={divider}>
+            Table Section
+          </Divider>
 
-      <Paginations />
+          <TableSec />
 
-      <Divider orientation="center" style={divider}>
-        Tabs Section
-      </Divider>
+          <Divider orientation="center" style={divider}>
+            Pagination Section
+          </Divider>
 
-      <Tab />
+          <Paginations />
 
-      <Divider orientation="center" style={divider}>
-        File Upload Section
-      </Divider>
+          <Divider orientation="center" style={divider}>
+            Tabs Section
+          </Divider>
 
-      <FileUpload />
+          <Tab />
 
-      <Divider orientation="center" style={divider}>
-        Date Pickers
-      </Divider>
+          <Divider orientation="center" style={divider}>
+            File Upload Section
+          </Divider>
 
-      <DatePicker
-        picker="date"
-        rootClassName="rootClass"
-        popupClassName="popupClass"
-      />
-      <TimePicker picker="date" />
-      <DatePicker.RangePicker picker="date" />
+          <FileUpload />
 
-      <Divider orientation="center" style={divider}>
-        Progress Section
-      </Divider>
+          <Divider orientation="center" style={divider}>
+            Date Pickers
+          </Divider>
 
-      <Progresses />
+          <DatePicker
+            picker="date"
+            rootClassName="rootClass"
+            popupClassName="popupClass"
+          />
+          <TimePicker picker="date" />
+          <DatePicker.RangePicker picker="date" />
 
-      <Divider orientation="center" style={divider}>
-        Tags Section
-      </Divider>
+          <Divider orientation="center" style={divider}>
+            Progress Section
+          </Divider>
 
-      <Tags />
+          <Progresses />
 
-      <Divider orientation="center" style={divider}>
-        Typography Section
-      </Divider>
+          <Divider orientation="center" style={divider}>
+            Tags Section
+          </Divider>
 
-      <Typographies />
+          <Tags />
 
-      <Divider orientation="center" style={divider}>
-        Menu Section
-      </Divider>
+          <Divider orientation="center" style={divider}>
+            Typography Section
+          </Divider>
 
-      <Menu />
+          <Typographies />
 
-      <Divider orientation="center" style={divider}>
-        Avatar Section
-      </Divider>
+          <Divider orientation="center" style={divider}>
+            Menu Section
+          </Divider>
 
-      <Avatar />
+          <Menu />
 
-      <Divider orientation="center" style={divider}>
-        Carousel Section
-      </Divider>
+          <Divider orientation="center" style={divider}>
+            Avatar Section
+          </Divider>
 
-      <Corusel />
+          <Avatar />
 
-      <Divider orientation="center" style={divider}>
-        Steps Section
-      </Divider>
+          <Divider orientation="center" style={divider}>
+            Carousel Section
+          </Divider>
 
-      <StepsSection />
+          <Corusel />
 
-      <Divider orientation="center" style={divider}>
-        Collapse and Expande Section
-      </Divider>
+          <Divider orientation="center" style={divider}>
+            Steps Section
+          </Divider>
 
-      <CollapseExpand />
+          <StepsSection />
 
-      <Divider orientation="center" style={divider}>
-        Toggles and Switches Section
-      </Divider>
+          <Divider orientation="center" style={divider}>
+            Collapse and Expande Section
+          </Divider>
 
-      <ToggleSwitches />
+          <CollapseExpand />
 
-      <Divider orientation="center" style={divider}>
-        Drawer Section
-      </Divider>
+          <Divider orientation="center" style={divider}>
+            Toggles and Switches Section
+          </Divider>
 
-      <DrawerSec />
+          <ToggleSwitches />
 
-      <Divider orientation="center" style={divider}>
-        Calendar Section
-      </Divider>
+          <Divider orientation="center" style={divider}>
+            Drawer Section
+          </Divider>
 
-      <CalendarSec />
+          <DrawerSec />
 
-      <Divider orientation="center" style={divider}>
-        Timer Section
-      </Divider>
+          <Divider orientation="center" style={divider}>
+            Calendar Section
+          </Divider>
 
-      <TimerSec />
+          <CalendarSec />
 
-      <Divider orientation="center" style={divider}>
-        Right Click Menu Section
-      </Divider>
+          <Divider orientation="center" style={divider}>
+            Timer Section
+          </Divider>
 
-      <RightClickMenu />
+          <TimerSec />
 
-      <Divider orientation="center" style={divider}>
-        Skeletons Section
-      </Divider>
+          <Divider orientation="center" style={divider}>
+            Right Click Menu Section
+          </Divider>
 
-      <SkeletonSec />
+          <RightClickMenu />
 
-      <Divider orientation="center" style={divider}>
-        Rating Section
-      </Divider>
+          <Divider orientation="center" style={divider}>
+            Skeletons Section
+          </Divider>
 
-      <RatingSec />
+          <SkeletonSec />
 
-      <Divider orientation="center" style={divider}>
-        AutoComplete Section
-      </Divider>
+          <Divider orientation="center" style={divider}>
+            Rating Section
+          </Divider>
 
-      <AutoComlete />
+          <RatingSec />
 
-      <Divider orientation="center" style={divider}>
-        useWatch() Hook
-      </Divider>
+          <Divider orientation="center" style={divider}>
+            AutoComplete Section
+          </Divider>
 
-      <UseWatchHook />
+          <AutoComlete />
 
-      <Divider orientation="center" style={divider}>
-        Cards Section
-      </Divider>
+          <Divider orientation="center" style={divider}>
+            useWatch() Hook
+          </Divider>
 
-      <CardSec />
+          <UseWatchHook />
+
+          <Divider orientation="center" style={divider}>
+            Cards Section
+          </Divider>
+
+          <CardSec />
+        </>
+      ) : (
+        <ResponsiveLeftMenu goBack={setResponsiveMenu} />
+      )}
     </div>
   );
 }

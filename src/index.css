@@ -53,6 +53,45 @@ body {
   background-color: rgb(0, 150, 255);
 }
 
+.loginPage {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  background: url("./images/nature1.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.loginForm {
+  background-color: rgb(255, 255, 255, 0.35);
+  box-shadow: 0px 8px 32px 0 rgba(157, 255, 0, 0.6);
+  backdrop-filter: blur(3px);
+  padding: 16px;
+  border-radius: 16px;
+}
+
+.socialLogin {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  color: darkslategray;
+  font-size: 24px;
+}
+
+.socialLogin > span {
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.socialLogin > span:hover {
+  scale: 1.2;
+}
+
 @media (min-width: 500px) {
   .mobileView {
     display: none;

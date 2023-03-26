@@ -28,6 +28,7 @@ import UseWatchHook from "./UseWatchHook";
 import CardSec from "./CardSec";
 import FloatButtons from "./FloatButtons";
 import DynamicTheme from "./DynamicTheme";
+import DependentDropDowns from "./DependentDropDowns";
 import { useNavigate } from "react-router-dom";
 
 export default function RestElements({ setShowApp }) {
@@ -226,6 +227,12 @@ export default function RestElements({ setShowApp }) {
       </Divider>
 
       <DynamicTheme />
+
+      <Divider orientation="center" style={divider}>
+        Dependent Dropdowns | Selectors
+      </Divider>
+
+      <DependentDropDowns />
     </div>
   );
 }

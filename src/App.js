@@ -4,6 +4,7 @@ import RestElements from "./RestElemets";
 import ResponsiveLeftMenu from "./ResponsiveLeftMenu";
 import MegaMenu from "./MegaMenu";
 import DynamicTable from "./DynamicTable";
+import LoginPage from "./LoginPage";
 // import { HeartFilled } from "@ant-design/icons";
 
 const App = () => {
@@ -23,6 +24,13 @@ const App = () => {
             Dynamic Table
           </Link>
           <Link
+            to="/login-page"
+            onClick={() => setShowApp(false)}
+            style={{ color: "darkorange" }}
+          >
+            Login Page
+          </Link>
+          <Link
             to="/rest-elements"
             onClick={() => setShowApp(false)}
             style={{ color: "darkred" }}
@@ -36,22 +44,22 @@ const App = () => {
           path="/rest-elements"
           element={<RestElements setShowApp={setShowApp} />}
         />
-        ;
         <Route
           path="/responsive-left-menu"
           element={<ResponsiveLeftMenu setShowApp={setShowApp} />}
         />
-        ;
+        <Route
+          path="/login-page"
+          element={<LoginPage setShowApp={setShowApp} />}
+        />
         <Route
           path="/mega-menu"
           element={<MegaMenu setShowApp={setShowApp} />}
         />
-        ;
         <Route
           path="/dynamic-table"
           element={<DynamicTable setShowApp={setShowApp} />}
         />
-        ;
       </Routes>
     </div>
   );

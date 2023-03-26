@@ -29,6 +29,8 @@ import CardSec from "./CardSec";
 import FloatButtons from "./FloatButtons";
 import DynamicTheme from "./DynamicTheme";
 import DependentDropDowns from "./DependentDropDowns";
+import WaterMark from "./WaterMark";
+import QRCodes from "./QR-Code";
 import { useNavigate } from "react-router-dom";
 
 export default function RestElements({ setShowApp }) {
@@ -233,6 +235,18 @@ export default function RestElements({ setShowApp }) {
       </Divider>
 
       <DependentDropDowns />
+
+      <Divider orientation="center" style={divider}>
+        Watermark Section
+      </Divider>
+
+      <WaterMark />
+
+      <Divider orientation="center" style={divider}>
+        QR-Code Generation
+      </Divider>
+
+      <QRCodes />
     </div>
   );
 }

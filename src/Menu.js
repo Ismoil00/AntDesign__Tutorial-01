@@ -26,9 +26,10 @@ export default function Menu() {
           defaultOpenKeys={[curPath]}
           onClick={({ key }) => {
             if (
-              key === "/dashboard" ||
-              key === "/user-management" ||
-              key === "/admin"
+              key === "/rest-elements/dashboard" ||
+              key === "/rest-elements/user-management" ||
+              key === "/rest-elements" ||
+              key === "/rest-elements/admin"
             ) {
               console.log(key);
             } else {
@@ -44,62 +45,62 @@ export default function Menu() {
             },
             {
               label: "Home",
-              key: "/",
+              key: "/rest-elements",
               icon: <HomeOutlined />,
             },
             {
               label: "Dashboard",
-              key: "/dashboard",
+              key: "/rest-elements/dashboard",
               icon: <DashboardOutlined />,
               children: [
                 {
                   label: "Revenue",
-                  key: "/revenue",
+                  key: "/rest-elements/revenue",
                   icon: <DollarCircleOutlined />,
                 },
                 {
                   label: <span style={{ color: "red" }}>Expenses</span>,
-                  key: "/expenses",
+                  key: "/rest-elements/expenses",
                   icon: <MoneyCollectOutlined />,
                 },
               ],
             },
             {
               label: "User Management",
-              key: "/user-management",
+              key: "/rest-elements/user-management",
               children: [
                 {
                   label: "Edit Profile",
-                  key: "/adit-profile",
+                  key: "/rest-elements/adit-profile",
                   icon: <EditOutlined />,
                 },
                 {
                   label: "Switch Account",
-                  key: "/switch-account",
+                  key: "/rest-elements/switch-account",
                   icon: <SwitcherOutlined />,
                 },
               ],
             },
             {
               label: "Admin",
-              key: "/admin",
+              key: "/rest-elements/admin",
               type: "group",
               children: [
                 {
                   label: "Admin Dashboard",
-                  key: "/admin-dashboard",
+                  key: "/rest-elements/admin-dashboard",
                   icon: <ControlOutlined />,
                 },
                 {
                   label: "Challenges",
-                  key: "/challenges",
+                  key: "/rest-elements/challenges",
                   icon: <TableOutlined />,
                 },
               ],
             },
             {
               label: "Sign-out",
-              key: "/sign-out",
+              key: "/rest-elements/sign-out",
               danger: true,
               icon: <PoweroffOutlined />,
             },
@@ -115,22 +116,37 @@ const Content = () => {
   return (
     <div>
       <Routes>
-        <Route path="/" /* element={<App />} */ />;
-        <Route path="/revenue" element={<div>Revenue Page</div>} />;
-        <Route path="/expenses" element={<div>Expenses Page</div>} />;
-        <Route path="/adit-profile" element={<div>Edit Profile Page</div>} />;
         <Route
-          path="/switch-account"
+          path="/rest-elements/revenue"
+          element={<div>Revenue Page</div>}
+        />
+        ;
+        <Route
+          path="/rest-elements/expenses"
+          element={<div>Expenses Page</div>}
+        />
+        ;
+        <Route
+          path="/rest-elements/adit-profile"
+          element={<div>Edit Profile Page</div>}
+        />
+        ;
+        <Route
+          path="/rest-elements/switch-account"
           element={<div>Switch Account Page</div>}
         />
         ;
         <Route
-          path="/admin-dashboard"
+          path="/rest-elements/admin-dashboard"
           element={<div>Admin Dashboard Page</div>}
         />
         ;
-        <Route path="/challenges" element={<div>Challenges Page</div>} />;
-        <Route path="/sign-out" element={<SignOut />} />;
+        <Route
+          path="/rest-elements/challenges"
+          element={<div>Challenges Page</div>}
+        />
+        ;
+        <Route path="/rest-elements/sign-out" element={<SignOut />} />;
       </Routes>
     </div>
   );

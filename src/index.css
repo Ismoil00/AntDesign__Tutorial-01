@@ -112,3 +112,39 @@ body {
     display: none;
   }
 }
+
+
+/* Image Gallery CSS */
+
+.imageGalleryParentDiv {
+  width: 100%;
+  min-height: 100vh;
+  height: fit-content;
+  padding: 20px 10px 0 10px;
+  background-color: white;
+}
+
+.galleryTitle {
+  text-align: center;
+  font-family: monospace;
+}
+
+.imageGallerySearchBar {
+  max-width: 500px;
+  display: flex;
+  margin: auto;
+}
+
+.cardStyle {
+  height: 300px;
+  margin: 12px;
+  overflow: hidden;
+  display: grid;
+  place-content: center;
+  padding: 5px;
+}
+
+.amountDisplayText {
+  font-size: 1.5rem;
+  padding-left: 10px;
+}

@@ -5,6 +5,7 @@ import ResponsiveLeftMenu from "./ResponsiveLeftMenu";
 import MegaMenu from "./MegaMenu";
 import DynamicTable from "./DynamicTable";
 import LoginPage from "./LoginPage";
+import ImageGalleryApp from "./ImageGalleryApp";
 // import { HeartFilled } from "@ant-design/icons";
 
 const App = () => {
@@ -31,6 +32,13 @@ const App = () => {
             Login Page
           </Link>
           <Link
+            to="/image-gallery"
+            onClick={() => setShowApp(false)}
+            style={{ color: "rgb(55, 132, 151)" }}
+          >
+            Image Gallery mini-App
+          </Link>
+          <Link
             to="/rest-elements"
             onClick={() => setShowApp(false)}
             style={{ color: "darkred" }}
@@ -55,6 +63,10 @@ const App = () => {
         <Route
           path="/mega-menu"
           element={<MegaMenu setShowApp={setShowApp} />}
+        />
+        <Route
+          path="/image-gallery"
+          element={<ImageGalleryApp setShowApp={setShowApp} />}
         />
         <Route
           path="/dynamic-table"

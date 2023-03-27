@@ -1,16 +1,33 @@
 import React from "react";
-import { Upload, Button, Spin } from "antd";
+import { Upload, Button, Spin, Space, Form, message, Input } from "antd";
+import axios from "axios";
 
-const FileUpload = () => {
-  const style = {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    heihgt: "100vh",
+export default function FileUpload() {
+  const handleFileUpload = ({ file }) => {
+    axios.post("http://localhost:8000/", file, {
+      onUploadProgress: (event) => {
+        console.log(event);
+      },
+    });
   };
 
   return (
-    <div style={style}>
+    <div className="fileUpload">
+      <Space direction="vertical" size={70} align="center">
+        <Upload multiple customRequest={handleFileUpload}>
+          <Button>Click to Upload</Button>
+        </Upload>
+        <SimpleFileUpload />
+        <FileUploadRules />
+      </Space>
+    </div>
+  );
+}
+
+const SimpleFileUpload = (req, res) => {
+  return (
+    <Space direction="vertical" size={10} align="center">
+      <h3 style={{ color: "darkred" }}>Simple File Upload:</h3>
       <Upload.Dragger
         // disabled
         action={"http://localhost:3001"}
@@ -54,8 +71,68 @@ const FileUpload = () => {
         <br />
         <Button>Upload File</Button>
       </Upload.Dragger>
-    </div>
+    </Space>
   );
 };
 
-export default FileUpload;
+const FileUploadRules = () => {
+  const onFinish = (val) => {
+    console.log(val);
+  };
+
+  return (
+    <Form onFinish={onFinish}>
+      <Space direction="vertical" align="center">
+        <h3 style={{ color: "darkred" }}>File Upload with Restrictions:</h3>
+        <Form.Item label="Full Name" name={"fullName"}>
+          <Input placeholder="Please, provide your full name!" />
+        </Form.Item>
+        <Form.Item
+          label="Profile Picture"
+          name="profile-picture"
+          valuePropName="files"
+          getValueFromEvent={(eve) => {
+            return eve?.files;
+          }}
+          rules={[
+            {
+              required: true,
+              message: "Please, upload your profile picture",
+            },
+            {
+              validator(_, files) {
+                // console.log(files);
+                return new Promise((resolve, reject) => {
+                  if (files && files[0].size > 900000) {
+                    reject("The file exceeded!");
+                  } else {
+                    resolve("Success!");
+                  }
+                });
+              },
+            },
+          ]}
+        >
+          <Upload
+            maxCount={1}
+            beforeUpload={(file) => {
+              return new Promise((resolve, reject) => {
+                if (file.size > 900000) {
+                  reject("The file exceeded!");
+                  message.error("The file exceeded!");
+                } else {
+                  resolve("Success!");
+                }
+              });
+            }}
+          >
+            <Button>Upload Profile Picture</Button>
+          </Upload>
+        </Form.Item>
+        <Button type="primary" htmlType="submit">
+          Submit
+        </Button>
+      </Space>
+    </Form>
+  );
+};

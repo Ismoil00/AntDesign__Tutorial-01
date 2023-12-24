@@ -8,6 +8,8 @@ import LoginPage from "./LoginPage";
 import ImageGalleryApp from "./ImageGalleryApp";
 // import { HeartFilled } from "@ant-design/icons";
 
+// ANT DESIGN TUTORIAL ONLY
+
 const App = () => {
   const [showApp, setShowApp] = useState(true);
 
